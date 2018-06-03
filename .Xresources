@@ -1,4 +1,4 @@
-URxvt.font: xft:Fantasque Sans Mono:size=14
+URxvt.font: xft:ShureTechMono Nerd Font:size=14
 URxvt.letterSpace: -1
 URxvt.scrollBar: false
 URxvt.internalBorder: 10 

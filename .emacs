@@ -4,6 +4,8 @@
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
+(add-to-list 'default-frame-alist '(font . "ShureTechMono Nerd Font-14" ))
+(set-face-attribute 'default t :font "ShureTechMono Nerd Font-14" )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,7 +22,9 @@
    (quote
     ("527df6ab42b54d2e5f4eec8b091bd79b2fa9a1da38f5addd297d1c91aa19b616" "78c1c89192e172436dbf892bd90562bc89e2cc3811b5f9506226e735a953a9c6" "5a7830712d709a4fc128a7998b7fa963f37e960fd2e8aa75c76f692b36e6cf3c" "6daa09c8c2c68de3ff1b83694115231faa7e650fdbb668bc76275f0f2ce2a437" "eae831de756bb480240479794e85f1da0789c6f2f7746e5cc999370bbc8d9c8a" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" default)))
  '(fci-rule-color "#14151E")
- '(package-selected-packages (quote (base16-theme afternoon-theme evil)))
+ '(package-selected-packages
+   (quote
+    (rust-mode xah-fly-keys base16-theme afternoon-theme evil)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -49,8 +53,19 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(require 'evil)
-(evil-mode 1)
+;;(require 'evil)
+;;(evil-mode 1)
+(defun org-mode-export-hook()
+  "Auto export html"
+  (when (eq major-mode 'org-mode)
+    (org-latex-export-to-pdf t)))
+
+(setq org-export-async-debug nil)
+(add-hook 'after-save-hook 'org-mode-export-hook)
+
+(require 'xah-fly-keys)
+(xah-fly-keys-set-layout "qwerty")
+(xah-fly-keys 1)
 (setq inhibit-startup-message t)
 (dired ".")
 (blink-cursor-mode -1)
